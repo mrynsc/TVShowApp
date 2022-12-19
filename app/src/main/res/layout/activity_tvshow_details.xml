@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="tvShowImageURL"
+            type="String" />
+        
+        <variable
+            name="tvShowName"
+            type="String" />
+
+        <variable
+            name="networkCountry"
+            type="String" />
+
+        <variable
+            name="status"
+            type="String" />
+
+        <variable
+            name="startedDate"
+            type="String" />
+        
+        <variable
+            name="description"
+            type="String" />
+        
+        <variable
+            name="rating"
+            type="String" />
+        
+        <variable
+            name="genre"
+            type="String" />
+
+        <variable
+            name="runtime"
+            type="String" />
+        
+        <import type="android.view.View"/>
+        
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/black"
+        tools:context=".activities.TVShowDetailsActivity">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_160sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/sliderViewPager"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:id="@+id/viewFadingEdge"
+                    android:background="@drawable/backround_fading_edge"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/sliderViewPager"/>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layoutSliderIndicators"
+                    android:gravity="end|center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imageTvShow"
+                    app:layout_constraintBottom_toBottomOf="@id/viewFadingEdge"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:id="@+id/imageBack"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/background_back_button"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/black"/>
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:id="@+id/imageTvShow"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:imageURL="@{tvShowImageURL}"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sliderViewPager"
+                    app:riv_corner_radius="@dimen/_6sdp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textName"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{tvShowName}"
+                    android:textColor="@color/teal_200"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imageTvShow"
+                    app:layout_constraintTop_toBottomOf="@id/sliderViewPager"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textNetworkCountry"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{networkCountry}"
+                    android:textColor="@color/teal_200"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/textName"
+                    app:layout_constraintStart_toEndOf="@id/textName"
+                    app:layout_constraintTop_toBottomOf="@id/textName"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textStatus"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{status}"
+                    android:textColor="@color/teal_200"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imageTvShow"
+                    app:layout_constraintTop_toBottomOf="@id/textNetworkCountry"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textStarted"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"Started on:" + startedDate}'
+                    android:textColor="@color/teal_200"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/textName"
+                    app:layout_constraintStart_toEndOf="@id/textName"
+                    app:layout_constraintTop_toBottomOf="@id/textStatus"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textDescription"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:maxLines="4"
+                    android:text="@{description}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11ssp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/imageTvShow"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textReadMore"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:text="@string/read_more"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/textDescription"
+                    app:layout_constraintTop_toBottomOf="@id/textDescription"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/viewDivider1"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/black"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/textReadMore"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layoutMisc"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider1">
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_star"
+                        app:tint="#D5C85D"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@{rating}"
+                        android:id="@+id/textRating"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/u2022"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13ssp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@{genre}"
+                        android:id="@+id/textGenre"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/u2022"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13ssp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@{runtime}"
+                        android:id="@+id/textRuntime"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/viewDivider2"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@color/black"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/layoutMisc"/>
+
+
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonEpisodes"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/episodes"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#E1A46F"
+                    app:cornerRadius="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider2"/>
+
+                <Button
+                    android:id="@+id/uploadButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_12sdp"
+                    android:text="@string/add_comment"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/buttonEpisodes"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:layout_marginTop="52dp"
+                    android:background="#D3BCBC"
+                    app:layout_constraintTop_toBottomOf="@+id/uploadButton"
+                     />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+
+        <ProgressBar
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE,default=gone}"/>
+
+
+
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:id="@+id/imageWatchList"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/background_fab"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/ic_eye"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white"/>
+
+
+        
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TVShow</string>
+    <string name="read_more">Read More</string>
+    <string name="read_less">Read  Less</string>
+    <string name="u2022">•</string>
+    <string name="episodes">Episodes</string>
+    <string name="website">Website</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="search_tv_show">Search TV Show</string>
+    <string name="add_comment">Add comment</string>
+    <string name="comments">Comments</string>
+    <string name="write">write</string>
+    <string name="send">Send</string>
+</resources>

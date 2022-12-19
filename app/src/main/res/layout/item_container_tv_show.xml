@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="tvShow"
+            type="com.example.tvshow.models.TVShow" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/_4sdp"
+        android:layout_height="wrap_content">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:id="@+id/viewSupporter"
+            app:layout_constraintTop_toBottomOf="@+id/imageTvShow" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/viewBackground"
+            android:background="@drawable/background_tv_show"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textName" />
+
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:id="@+id/imageTvShow"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:scaleType="centerCrop"
+            android:imageURL="@{tvShow.thumbnail}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="@dimen/_4sdp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textName"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:fontFamily="sans-serif"
+            android:text="@{tvShow.name}"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/_8sdp"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageTvShow"
+            app:layout_constraintTop_toTopOf="@id/imageTvShow" />
+
+        <TextView
+            android:id="@+id/textNetwork"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="sans-serif"
+            android:text='@{tvShow.network + " (" + tvShow.country + ")"}'
+            android:includeFontPadding="false"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
+            app:layout_constraintTop_toBottomOf="@id/textName" />
+
+        <TextView
+            android:id="@+id/textStarted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:text='@{"Started on: " + tvShow.startDate}'
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
+            app:layout_constraintTop_toBottomOf="@id/textNetwork" />
+
+        <TextView
+            android:id="@+id/textStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="sans-serif"
+            android:text="@{tvShow.status}"
+            android:includeFontPadding="false"
+            android:textColor="@color/teal_200"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
+            app:layout_constraintTop_toBottomOf="@id/textStarted" />
+
+        <ImageView
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:id="@+id/imageDelete"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_delete"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="#B71C1C"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
